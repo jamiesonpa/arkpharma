@@ -1,3 +1,5 @@
+#notes: this may not be executable from an AWS backend since it uses a selenium webdriver, but the concept is still good
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import pandas as pd
@@ -5,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-path = 'C:/Users/user/Documents/tickers.xlsx'
+path = 'C:/Users/user/Documents/tickers.csv' #change this to the path of the CSV file that came from the script that retrieved and reconciled all pharma tickers
 
 chromedriver = 'C:\\Users\\user\\Downloads\\chromedriver_win32\\chromedriver.exe'
 
@@ -18,7 +20,7 @@ options.add_argument("--disable-extensions")
 
 browser = webdriver.Chrome(executable_path=chromedriver, chrome_options=options)
 
-df = pd.read_excel(path, sheet_name=0)
+df = pd.read_csv(path)
 data=df["ticker"].tolist()
 
 for item in data:
